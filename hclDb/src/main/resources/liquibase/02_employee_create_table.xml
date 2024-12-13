@@ -7,6 +7,16 @@
 
 	<changeSet  id="03"  author="palvish">  
           <sqlFile path="db/createEmployeeTable.sql" /> 
+    </changeSet>
+    
+    <changeSet  id="003"  author="palvish">  
+          <addAutoIncrement 
+          tableName="employee"
+          columnName="id"
+          columnDataType="INT"
+          incrementBy="9"
+          startWith="27"
+           /> 
     </changeSet> 	
 
 </databaseChangeLog>

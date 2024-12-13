@@ -4,24 +4,35 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "employee")
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
+	private Long id;
 	private String name;
 	private String gender;
 	private Integer age;
+
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date dob;
+
 	private Long salary;
 	private String address;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getGender() {
 		return gender;
@@ -73,8 +84,8 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", age=" + age + ", dob=" + dob + ", salary=" + salary + ", address="
-				+ address + "]";
+		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", age=" + age + ", dob=" + dob
+				+ ", salary=" + salary + ", address=" + address + "]";
 	}
 
 }

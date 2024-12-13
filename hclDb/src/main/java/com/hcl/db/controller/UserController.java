@@ -30,7 +30,7 @@ public class UserController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<User> getUsersById(@PathVariable("id") Long id) {
+	public ResponseEntity<User> getUsersById(@PathVariable Long id) {
 		return ResponseEntity.ok(userService.getUserById(id));
 	}
 
@@ -40,12 +40,12 @@ public class UserController {
 	}
 
 	@PatchMapping("/edit/{id}")
-	public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable("id") Long id) {
+	public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long id) {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(userService.update(user, id));
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deleteUsersById(@PathVariable("id") Long id) {
+	public ResponseEntity<String> deleteUsersById(@PathVariable Long id) {
 		userService.deleteUserById(id);
 		return ResponseEntity.ok("User deleted with ID: " + id);
 	}
