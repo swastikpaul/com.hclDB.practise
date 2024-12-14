@@ -2,27 +2,25 @@ package com.hcl.db.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "employee")
 public class Employee {
 
 	@Id
-	@Column(name = "id", nullable = false)
+	@JsonProperty("id")
 	private Long id;
 	private String name;
 	private String gender;
 	private Integer age;
-
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date dob;
-
 	private Long salary;
 	private String address;
 

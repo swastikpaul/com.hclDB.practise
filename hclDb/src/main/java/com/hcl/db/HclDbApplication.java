@@ -8,6 +8,7 @@ public class HclDbApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HclDbApplication.class, args);
+		System.out.println("*****************************");
 	}
 
 }

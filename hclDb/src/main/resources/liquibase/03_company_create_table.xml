@@ -5,13 +5,13 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-	<changeSet  id="02"  author="palvish">  
-          <sqlFile path="db/createEmployeeTable.sql" /> 
+	<changeSet  id="03"  author="palvish">  
+          <sqlFile path="db/createCompanyTable.sql" /> 
     </changeSet>
     
-    <changeSet  id="002"  author="palvish">  
+    <changeSet  id="003"  author="palvish">  
           <addAutoIncrement 
-          tableName="employee"
+          tableName="company"
           columnName="ID"
           columnDataType="INT"
           incrementBy="9"

@@ -9,7 +9,7 @@
           <sqlFile path="db/createUserTable.sql" /> 
     </changeSet> 
     
-    <changeSet  id="02"  author="palvish">  
+    <changeSet  id="001"  author="palvish">  
           <addAutoIncrement 
           tableName="user"
           columnName="id"

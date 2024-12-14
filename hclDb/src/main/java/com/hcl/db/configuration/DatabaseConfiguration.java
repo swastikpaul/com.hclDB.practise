@@ -32,6 +32,5 @@ public class DatabaseConfiguration {
 		dmds.setUsername(username);
 		dmds.setPassword(password);
 		return dmds;
-
 	}
 }

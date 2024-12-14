@@ -7,6 +7,6 @@
 
 	<include file="liquibase/01_user_create_table.xml"/>
 	<include file="liquibase/02_employee_create_table.xml"/>
+	<include file="liquibase/03_company_create_table.xml"/>
 	
-
 </databaseChangeLog>
