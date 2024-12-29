@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "5bd89fc0-7c70-4d5b-94a6-5265bafcabba",
+		"name": "HCLDB-2025",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1232861"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "getAllUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/user/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "saveUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"palvish\",\r\n    \"gender\": \"M\",\r\n    \"profile_desc\": \"profile\",\r\n    \"dob\": \"10-10-1986\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/user/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"user",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editUser",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dob\": \"23-12-1990\",\r\n    \"name\": \"vishwanath\",\r\n    \"profile_desc\": \"profile gender\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/user/edit/48",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"user",
+								"edit",
+								"48"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/user/48",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"user",
+								"48"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUserById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/user/53",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"user",
+								"53"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "getAllEmployee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/employee/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"employee",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "saveEmployee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Paul\",\r\n    \"gender\": \"F\",\r\n    \"age\": 88,\r\n    \"salary\": 458900,\r\n    \"dob\": \"10-10-1490\",\r\n    \"address\": \"Bombay\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/employee/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"employee",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "employeeById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/employee/31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"employee",
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editEmployee",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Paul\",\r\n    \"gender\": \"F\",\r\n    \"age\": 99,\r\n    \"salary\": 99999,\r\n    \"dob\": \"10-10-1490\",\r\n    \"address\": \"Bombay\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/employee/edit/31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"employee",
+								"edit",
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteEmployeeById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/employee/32",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"employee",
+								"32"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "getAllCompany",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/company/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"company",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "saveCompany",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cName\": \"Hcl\",\r\n    \"sector\": \"IT\",\r\n    \"since\": 1980,\r\n    \"numberOfEmployee\": 458900,\r\n    \"location\": \"Pune\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/company/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"company",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editCompany",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cName\": \"DB\",\r\n    \"sector\": \"IT\",\r\n    \"since\": 1980,\r\n    \"numberOfEmployee\": 458900,\r\n    \"location\": \"Bomaby\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/company/edit/27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"company",
+								"edit",
+								"27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "companyById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/company/27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"company",
+								"27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCompanyById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8091/company/27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"company",
+								"27"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

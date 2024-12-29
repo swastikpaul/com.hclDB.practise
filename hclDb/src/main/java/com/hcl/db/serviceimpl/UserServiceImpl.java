@@ -1,6 +1,7 @@
 package com.hcl.db.serviceimpl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserById(Long id) {
 		User user = userServiceRepository.findById(id).get();
+		if (Objects.isNull(user)) {
+			throw new NoSuchElementException();
+		}
 		return user;
 	}
 
