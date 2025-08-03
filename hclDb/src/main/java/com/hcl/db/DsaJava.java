@@ -52,7 +52,8 @@ public class DsaJava {
 		 */
 		// System.out.println(dsa4(array1));
 		// System.out.println(dsa4_1(array1));
-		System.out.println(dsa4_2(array1));
+		// System.out.println(dsa4_2(array1));
+		System.out.println(dsa4_3(array1));
 	}
 
 	private static String dsa1(int number) {
@@ -203,7 +204,7 @@ public class DsaJava {
 		int[] ansArray = new int[array1.length];
 		Arrays.fill(ansArray, 1);
 		int pre = 1, post = 1;
-
+		// pre = [1, 1, 2, 6]
 		for (int i = 0; i < array1.length; i++) {
 			ansArray[i] = pre;
 			pre *= array1[i];
@@ -212,6 +213,27 @@ public class DsaJava {
 		for (int j = array1.length - 1; j >= 0; j--) {
 			ansArray[j] = ansArray[j] * post;
 			post = post * array1[j];
+		}
+		return Arrays.toString(ansArray);
+	}
+
+	private static String dsa4_3(int[] array1) {
+
+		int[] ansArray = new int[array1.length];
+		int multi = 1;
+		int n = 0;
+
+		for (int i = 0; i < array1.length; i++) {
+			for (int j = 0; j < array1.length; j++) {
+				if (j == i) {
+					continue;
+				} else {
+					multi *= array1[j];
+					continue;
+				}
+			}
+			ansArray[n++] = multi;
+			multi = 1;
 		}
 		return Arrays.toString(ansArray);
 	}

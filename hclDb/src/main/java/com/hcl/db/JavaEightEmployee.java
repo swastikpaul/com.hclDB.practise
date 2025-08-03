@@ -11,21 +11,16 @@ import java.util.stream.Stream;
 
 public class JavaEightEmployee {
 
-	/**
-	 * @param args
-	 */
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-
 		List<Employee> empList = Stream.of(
 				new Employee(90, "vishwanath", "HCL", "PUNE", 900000, Arrays.asList(122345, 567890), 45, "M"),
 				new Employee(40, "Kamla", "INFO", "Bangalore", 500000, Arrays.asList(155545, 567897), 56, "M"),
 				new Employee(70, "Rahul", "CSC", "Delhi", 100000, Arrays.asList(112345, 237890), 34, "F"),
 				new Employee(100, "Anil", "Cognizent", "Bombay", 400000, Arrays.asList(120045, 565590), 67, "F"),
 				new Employee(20, "Sourabh", "LTI", "Kolkata", 600000, Arrays.asList(188885, 522290), 66, "F"),
-				new Employee(30, "Vikas", "Accesnture", "Delhi", 700000, Arrays.asList(122666, 567111), 23, "F"))
+				new Employee(30, "Vikas", "Accesnture", "Delhi", 700000, Arrays.asList(122666, 567111), 23, "F"),
+				new Employee(32, "Harsh", "Accesnture", "Delhi", 700000, Arrays.asList(122666, 567111), 23, "F"),
+				new Employee(35, "Ram", "Accesnture", "Delhi", 700000, Arrays.asList(122666, 567111), 23, "M"))
 				.collect(Collectors.toList());
 
 		// find the list of employee whose salary between 1LPA to 5LPA
@@ -34,7 +29,7 @@ public class JavaEightEmployee {
 		// System.out.println(e1);
 
 		// find the list of employee whose salary between 1LPA to 5LPA then sort them by
-		// their name (ascending & descending)
+		// their name (ascending or descending)
 		List<Employee> e2 = empList.stream().filter(s -> s.getSalary() >= 100000 && s.getSalary() <= 500000)
 				.sorted(Comparator.comparing(Employee::getName, Comparator.reverseOrder()))
 				.collect(Collectors.toList());
@@ -78,12 +73,31 @@ public class JavaEightEmployee {
 				.groupingBy(Employee::getCompany, Collectors.maxBy(Comparator.comparing(Employee::getSalary))));
 		// System.out.println(mapBasedonSal);
 
+		// How many male and female employees are there in the organization?
+		Map<String, Long> mapGenderCount = empList.stream()
+				.collect(Collectors.groupingBy(Employee::getGender, Collectors.counting()));
+		// System.out.println(mapGenderCount);
+
+		// count male female of each departments
+		Map<String, Map<String, Long>> depGenCount = empList.stream().collect(Collectors
+				.groupingBy(Employee::getCompany, Collectors.groupingBy(Employee::getGender, Collectors.counting())));
+		// System.out.println(depGenCount);
+
+		// Print the name of all departments in the organization?
+		List<String> comList = empList.stream().map(Employee::getCompany).distinct().collect(Collectors.toList());
+		// System.out.println(comList);
+
+		// Get the details of highest paid employee in the organization?
+		Optional<Employee> higestPaidEmp = empList.stream()
+				.collect(Collectors.minBy(Comparator.comparingDouble(Employee::getSalary)));
+		System.out.println(higestPaidEmp);
+
 		// find the second highest salary
 		List<Employee> sortBySalary = empList.stream().sorted(Comparator.comparing(Employee::getSalary))
 				.collect(Collectors.toList());
 		Employee secondHighestSalary = empList.stream().sorted(Comparator.comparing(Employee::getSalary).reversed())
 				.skip(1).findFirst().get();
-		System.out.println(secondHighestSalary);
+		// System.out.println(secondHighestSalary);
 	}
 
 	public static class Employee {

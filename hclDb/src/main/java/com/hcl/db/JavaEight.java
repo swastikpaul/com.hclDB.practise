@@ -2,15 +2,21 @@ package com.hcl.db;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.IntSummaryStatistics;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.OptionalDouble;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.OptionalInt;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class JavaEight {
 
@@ -18,11 +24,14 @@ public class JavaEight {
 
 	public static void main(String[] args) {
 
-		int[] array = { 2, 24, 6, 8, 21, 10, };
+		int[] array = { 2, 4, 1, 9 };
 		int element = 0;
 		int number = 100;
 		String str = "counteachcharater";
+		String str1 = "abbacccahh";
 		String[] longString = { "Spring", "Microservies", "MVC", "java" };
+		String[] dupString = { "Alice", "Bob", "David", "Alice", "Alice", "David", "Bob", "Charlie", "David", "Charlie",
+				"Bob", "David" };
 
 		// System.out.println(countDuplChar(str));
 		// System.out.println(getAllDuplChar(str));
@@ -33,7 +42,7 @@ public class JavaEight {
 		// System.out.println(findLongestString(longString));
 		// System.out.println(findGivenElementStartWith(array, element));
 		// System.out.println(findOccuranceOfElement(number, element));
-		System.out.println(findMaxElement(array));
+		// System.out.println(findMaxElement(array));
 		// System.out.println(calculateSumOfAllNum(array));
 		// System.out.println(calculateAvgOfAllNum(array));
 		// System.out.println(converStringToUpperCase(longString));
@@ -44,7 +53,120 @@ public class JavaEight {
 		// System.out.println(mapStrWithStrLength(longString));
 		// System.out.println(mapStrWithIncrementValue(longString));
 		// System.out.println(addAllStrLength(longString));
+		// System.out.println(sortStrBasedOnStrLength(longString));
+		// System.out.println(countDuplChar(dupString));
+		// System.out.println(firstLeastOccuranceOfCharactor(str1));
+		// System.out.println(firstMinOrMaxOccuranceOfNumber());
+		// System.out.println(printOnlyNonEmptyValue());
+		// System.out.println(reverseEachCharOfString());
+		// System.out.println(reverseEachWordOfString());
+		// System.out.println(getMinAndMaxNumber());
+		// System.out.println(mergTwoArrayInSortedArray());
+		// System.out.println(isTwoStringAnagram());
+		// System.out.println(commonElementInTwoArray());
+		// System.out.println(findDuplicateNumFromArray());
+		// System.out.println(findMaxAndMinElement());
+		// System.out.println(removeNullValueFromArrString());
+		// System.out.println(highestFrequancyOfChar());
+		System.out.println(returnTrueIfAnythingMoreTHenEqualToGivenNum());
 
+	}
+
+	private static String highestFrequancyOfChar() {
+		String str8 = "testsample";
+		String charStr = Arrays.stream(str8.split(""))
+				.collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+				.entrySet().stream().reduce((s1, s2) -> s1.getValue() > s2.getValue() ? s1 : s2).get().getKey();
+		return charStr;
+	}
+
+	// max & min both can be use
+	private static int findMaxElement(int[] array) {
+		int max = Arrays.stream(array).boxed().min(Comparator.naturalOrder()).get();
+		return max;
+	}
+
+	private static OptionalInt getMinAndMaxNumber() {
+		int[] arr1 = { 6, 8, 1, 2, 3 };
+		OptionalInt max = Arrays.stream(arr1).max();
+		return max;
+	}
+
+	private static int findMaxAndMinElement() {
+		int[] arr = { 3, 1, 2, 5, 3, 1 };
+		int maxNum = Arrays.stream(arr).boxed().mapToInt(Integer::intValue).max().getAsInt();
+		return maxNum;
+	}
+
+	private static double calculateAvgOfAllNum(int[] array) {
+		double avg = Arrays.stream(array).boxed().mapToInt(Integer::intValue).average().getAsDouble();
+		return avg;
+	}
+
+	private static int calculateSumOfAllNum(int[] array) {
+		int sum = Arrays.stream(array).boxed().mapToInt(Integer::intValue).sum();
+		return sum;
+	}
+
+	private static Set<Integer> findDuplicateNumFromArray() {
+		int[] arr = { 3, 1, 2, 5, 3, 1 };
+		Set<Integer> set = new HashSet<>();
+		Set<Integer> dSet = Arrays.stream(arr).boxed().filter(f -> !set.add(f)).collect(Collectors.toSet());
+		return dSet;
+	}
+
+	private static char[] commonElementInTwoArray() {
+		int[] arr4 = { 3, 1, 2, 5 };
+		int[] arr5 = { 5, 6, 4 };
+		// Arrays.stream(arr4).boxed().filter(Arrays.stream(arr5).boxed()::count).forEach(System.out::println);
+		return null;
+	}
+
+	private static boolean isTwoStringAnagram() {
+		String str4 = "Geeks";
+		String str5 = "gkees";
+		String aWord1 = Stream.of(str4.split("")).map(String::toUpperCase).sorted().collect(Collectors.joining());
+		String aWord2 = Stream.of(str5.split("")).map(String::toUpperCase).sorted().collect(Collectors.joining());
+		return aWord1.equals(aWord2);
+	}
+
+	private static String mergTwoArrayInSortedArray() {
+		int[] arr2 = { 3, 1, 2, 5 };
+		int[] arr3 = { 5, 6, 4 };
+		String arrString = IntStream.concat(Arrays.stream(arr2), Arrays.stream(arr3)).sorted().distinct().toString();
+		return arrString;
+	}
+
+	private static String reverseEachWordOfString() {
+		String str3 = "My name is vish";
+		String revWord = Arrays.stream(str3.split(" ")).map(word -> new StringBuilder(word).reverse())
+				.collect(Collectors.joining(" "));
+		return revWord;
+	}
+
+	private static String reverseEachCharOfString() {
+		String str = "vish";
+		String rev = Stream.of(str).map(word -> new StringBuilder(word).reverse()).collect(Collectors.joining());
+		return rev;
+	}
+
+	private static List<String> removeNullValueFromArrString() {
+		String[] str = { "abc", "qwe", null };
+		List<String> nonNullStr = Arrays.stream(str).filter(Objects::nonNull).collect(Collectors.toList());
+		return nonNullStr;
+	}
+
+	private static List<String> printOnlyNonEmptyValue() {
+		String[] str1 = { "abc", "", "qwe", " ", "  ", null };
+		List<String> list = Arrays.stream(str1).filter(f -> null != f && !f.trim().equals(""))
+				.collect(Collectors.toList());
+		return list;
+	}
+
+	private static List<String> sortStrBasedOnStrLength(String[] longString) {
+		List<String> list = Arrays.stream(longString).sorted(Comparator.comparingInt(String::length))
+				.collect(Collectors.toList());
+		return list;
 	}
 
 	private static Integer addAllStrLength(String[] longString) {
@@ -86,36 +208,19 @@ public class JavaEight {
 		return oddEven;
 	}
 
+	private static List<Integer> getAllEvenNum(int[] array) {
+		List<Integer> evenNum = Arrays.stream(array).boxed().filter(f -> f % 2 == 0).collect(Collectors.toList());
+		return evenNum;
+	}
+
 	private static List<Integer> getOnlyDistinctNum(int[] array) {
 		List<Integer> distinct = Arrays.stream(array).boxed().distinct().collect(Collectors.toList());
 		return distinct;
 	}
 
-	private static OptionalDouble calculateAvgOfAllNum(int[] array) {
-		OptionalDouble avg = Arrays.stream(array).boxed().mapToInt(Integer::intValue).average();
-		return avg;
-	}
-
-	private static List<Integer> getAllEvenNum(int[] array) {
-		List<Integer> evenNum = Arrays.stream(array).boxed().filter(f -> f.intValue() % 2 == 0)
-				.collect(Collectors.toList());
-		return evenNum;
-	}
-
 	private static List<String> converStringToUpperCase(String[] longString) {
 		List<String> upCase = Arrays.stream(longString).map(String::toUpperCase).collect(Collectors.toList());
 		return upCase;
-	}
-
-	// max & min both can be use
-	private static int findMaxElement(int[] array) {
-		int max = Arrays.stream(array).boxed().min(Comparator.naturalOrder()).get();
-		return max;
-	}
-
-	private static int calculateSumOfAllNum(int[] array) {
-		int sum = Arrays.stream(array).boxed().mapToInt(Integer::intValue).sum();
-		return sum;
 	}
 
 	private static int findOccuranceOfElement(int number, int element) {
@@ -203,4 +308,47 @@ public class JavaEight {
 		return map;
 	}
 
+	private static Map<Object, Long> countDuplChar(String[] dupStr) {
+
+		Map<String, Long> output1 = Arrays.stream(dupStr)
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+		Map<Object, Long> output2 = output1.entrySet().stream()
+				.sorted(Collections.reverseOrder(Map.Entry.comparingByKey()))
+				.collect(Collectors.toMap(Entry::getKey, Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+		Map<Object, Long> output3 = output1.entrySet().stream().sorted(Comparator.comparing(Entry::getValue))
+				.collect(Collectors.toMap(Entry::getKey, Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+		// System.out.println(output1);
+		// System.out.println(output3);
+		return output2;
+	}
+
+	private static Character firstLeastOccuranceOfCharactor(String str1) {
+
+		return str1.chars().mapToObj(c -> (char) c)
+				.collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+				.entrySet().stream().min(Comparator.comparing(Entry::getValue)).get().getKey();
+	}
+
+	private static Integer firstMinOrMaxOccuranceOfNumber() {
+		List<Integer> list = Arrays.asList(1, 5, 2, 4, 1, 1, 2);
+
+		return list.stream()
+				.collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+				.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)).get().getKey();
+	}
+
+	private static boolean returnTrueIfAnythingMoreTHenEqualToGivenNum() {
+		List<Integer> list = Arrays.asList(1, 5, 2, 4, 1, 1, 2);
+		int num = 3;
+		Map<Integer, Long> mapCount = list.stream()
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		for (Map.Entry<Integer, Long> mapFlag : mapCount.entrySet()) {
+			if (mapFlag.getValue() >= num)
+				return true;
+		}
+		return false;
+	}
 }

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class TestClass {
 
@@ -18,7 +21,7 @@ public class TestClass {
 		char[] ch = { 'a', 'b', 'c', 'd' };
 		String str = "mathematics";
 
-		// System.out.println(findAllPossibleCombination(ch, number));
+		// System.out.println(findAllPossibleCombination(ch));
 		// System.out.println(findMissingNumber(array));
 		// System.out.println(findZeroOcuranceInGivenNumber(number));
 		// System.out.println(bubleSort(array));
@@ -35,7 +38,8 @@ public class TestClass {
 		// System.out.println(countCharFromStrByMap(str));
 		// System.out.println(countCharFromStrWithoutMap(str));
 		// System.out.println(smallestDiffFromTwoArray(array, array1));
-		System.out.println(smallestDiffFromTwoArray1(array, array1));
+		// System.out.println(smallestDiffFromTwoArray1(array, array1));
+		System.out.println(findSmallestNumberWhichIsNotInArr(array));
 
 	}
 
@@ -245,7 +249,7 @@ public class TestClass {
 		return combination;
 	}
 
-	private static List<String> findAllPossibleCombination(char[] ch, int number) {
+	private static List<String> findAllPossibleCombination(char[] ch) {
 		List<String> list = new ArrayList<>();
 		for (int i = 0; i < ch.length; i++) {
 			for (int j = i + 1; j < ch.length; j++) {
@@ -341,6 +345,8 @@ public class TestClass {
 		return count;
 	}
 
+	// { 1, 3, 15, 11, 2 }
+	// { 1, 2, 3, 11, 15 }
 	private static String findMissingNumber(int[] array) {
 		Arrays.sort(array);
 		int firstElement = array[0];
@@ -354,8 +360,8 @@ public class TestClass {
 			newAllElement[i] = firstElement + i;
 		}
 		// example below
-		// [1, 2, 3, 4, 5, 6, 7, 8, 9]
-		// [1, 3, 5, 9]
+		// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+		// [1, 2, 3, 11, 15]
 		for (int i = 0; i < newAllElement.length; i++) {
 			for (int j = 0; j < array.length; j++) {
 				if (newAllElement[i] == array[j]) {
@@ -373,6 +379,29 @@ public class TestClass {
 			}
 		}
 		return Arrays.toString(missElements);
+	}
+
+	private static int findSmallestNumberWhichIsNotInArr(int[] arr) {
+		Arrays.sort(arr);
+		int minValue = arr[1];
+		int maxValue = arr[arr.length - 1];
+		int length = arr.length;
+		Set<Integer> set = new HashSet<>();
+
+		if (minValue == 0 || minValue == 1) {
+			return minValue;
+		}
+		// after insert complete range {1, 2, 3, 4, 5, 6, 7, 8, 9}
+		for (int j = minValue; j <= maxValue; j++) {
+			set.add(j);
+		}
+		for (int i = 0; i < length; i++) {
+			if (set.contains(arr[i])) {
+				set.remove(arr[i]);
+			}
+		}
+		return new TreeSet<>(set).getFirst();
+
 	}
 
 }
